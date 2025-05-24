@@ -1,0 +1,56 @@
+Page .js = represent home page route of the application.
+
+//! localhost:3000/
+
+Global.css : global css style of the entire app.
+
+ ***** If we have to use server side component to server side: 
+        "use client"
+        --> If we have to use any hooks or state we have to declare component as client side.
+
+ ========================================== Routing in Next Js ============  
+       
+       create folder correspond to desired router within app folder.  app --> user --> helloWorld.js
+
+       NESTED ROUTE: folder --> newFolder --> new.js
+
+       DYNAMIC ROUTING : [id] -- newfile --> rafce --> {id same name as folder}
+
+
+       error.js : raise any error --> client component
+
+
+==================================== DATA FETCHING ================================================
+
+       1. Server Side Rendering :  Fetched on each request.
+       2. Static side Generation : remove cache store. Don't change frequently.
+       3. Incremental static Generation : { next : { revalidate : 10 }} --> combine SSR + SSG : after time fresh again.
+
+====================================== BACKEND ROUTES =================================================
+
+       route.js: create in api folder : api --> user --> route.js (special file name)
+
+              export async funtion GET(request){
+                     return new Response('Hello Users'); 🖥️
+                     or 
+
+                     let obj = {
+                            --- your return object
+                     }
+
+                     return new Response(JSON.stringify(obj));
+              }
+
+              HEAD / POST /PUT / DELETE / PATCH
+
+=================================== SEO ===================================
+
+       1. Static : export const metadata = {
+              title : ''
+       }
+
+       2. Dynamic : 
+              export const function generateMetadata ({params , searchParams}){
+                     const product = await getProduct(params.id);
+                     return { title : product.title }
+              }
